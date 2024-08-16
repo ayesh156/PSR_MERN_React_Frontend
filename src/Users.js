@@ -15,7 +15,7 @@ const Users = () => {
   }, []);
 
   const getUsers = () => {
-    Axios.get("http://localhost:3001/api/users")
+    Axios.get(process.env.REACT_APP_ENDPOINT + "/api/users")
       .then((response) => {
         setUsers(response.data?.response || []);
       })
@@ -32,7 +32,7 @@ const Users = () => {
       name: data.name,
     };
 
-    Axios.post("http://localhost:3001/api/createuser", payload)
+    Axios.post(process.env.REACT_APP_ENDPOINT + "/api/createuser", payload)
       .then(() => {
         getUsers();
         setSubmitted(false);
@@ -51,7 +51,7 @@ const Users = () => {
       name: data.name,
     };
 
-    Axios.put("http://localhost:3001/api/updateuser", payload)
+    Axios.put(process.env.REACT_APP_ENDPOINT + "/api/updateuser", payload)
       .then(() => {
         getUsers();
         setSubmitted(false);
@@ -64,7 +64,7 @@ const Users = () => {
 
   const deleteUser = (data) => {
 
-    Axios.post("http://localhost:3001/api/deleteuser", data)
+    Axios.post(process.env.REACT_APP_ENDPOINT + "/api/deleteuser", data)
       .then(() => {
         getUsers();
       })
